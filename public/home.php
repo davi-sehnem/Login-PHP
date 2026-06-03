@@ -45,6 +45,20 @@
         <br>
         <button type="submit">Cadastrar</button>
     </form>
+    <h4>Excluir Usuário</h4>
+    <form method="POST">
+        <label for="usuario">Usuario:</label>
+        <input type="text" name="usuario">
+        <br>
+        <br>
+        <label for="senha">Senha:</label>
+        <input type="password" name="senha">
+        <br>
+        <br>
+        <button type="submit">Cadastrar</button>
+    </form>
+
+
     <?php
     
     include("../public/component/table.php");
