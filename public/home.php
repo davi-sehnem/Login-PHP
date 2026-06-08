@@ -44,27 +44,7 @@
         <br>
         <br>
         <button type="submit">Cadastrar</button>
-
-    </form>
-    <h4>Excluir Usuário</h4>
-    </form>
-    <label for="usuario">Usuário:</label>
-    <select name="excluir" id="excluir">
-
-    <?php
-    
-   $sqlUsuarios = "SELECT * FROM users";
-
-    $resultadoUsuarios = $conn -> query($sqlUsuarios);
-
-    while($linha = $resultadoUsuario->fetch_assoc()){
-        echo "<option value=" . $linha["id"] . ">" . $linha["id"] . "</option>";
-    }
-    
-    ?>
-
-    </select>
-
+    <form>
 
     <?php
     
