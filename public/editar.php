@@ -1,14 +1,11 @@
 <?php
 
     include("../infra/db/connect.php");
-    if (!isset($_SESSION["usuario"])) {
-        header("Location: ../index.php");
-        exit();
-    }
+    include("../public/component/verificacao.php");
 
     $id = $_GET["id"];
 
-    $sql = "SELECT * FROM users WHERE id = $id";
+    $sql = "SELECT * FROM usuario WHERE id = $id";
     $resultado = $conn -> query($sql);
 
     $usuario = $resultado -> fetch_assoc();
@@ -18,9 +15,9 @@
         $novoUsuario = $_POST["usuario"];
         $novaSenha = $_POST["senha"];
 
-        $sqlUpdate = "UPDATE users SET 
-                        username = '$novoUsuario', 
-                        password = '$novaSenha' 
+        $sqlUpdate = "UPDATE usuario SET 
+                        usuario = '$novoUsuario', 
+                        senha = '$novaSenha' 
                         WHERE id ='$id'";
         if($conn -> query($sqlUpdate) === TRUE){
             header("Location: home.php");
@@ -55,16 +52,37 @@
     <h2> Editar Usuário </h2>
 
     <form method="POST">
-        <label for="usuario">Usuario:</label>
-        <input type="text" name="usuario" value=" <?php echo $usuario['username'] ?> ">
-        <br>
-        <br>
-        <label for="senha">Senha:</label>
-        <input type="password" name="senha" value=" <?php echo $usuario['password'] ?> ">
-        <br>
-        <br>
-        <button type="submit">Salvar</button>
-    </form>
+    <label for="usuario">Usuario:</label>
+    <input type="text" name="usuario" value="<?php echo $usuario['usuario'] ?>"> 
+    <br><br>
+
+    <label for="senha">Senha:</label>
+    <input type="password" id="senha" name="senha" value="<?php echo $usuario['senha'] ?>"> 
+    <br><br>
+
+    <button type="button" id="btn-senha">Mostrar senha</button>
+    <br><br>
+
+    <button type="submit">Salvar</button>
+</form>
+
+<script>
+    
+    const campoSenha = document.getElementById('senha');
+    const botaoSenha = document.getElementById('btn-senha');
+
+    
+    botaoSenha.addEventListener('click', function() {
+        
+        if (campoSenha.type === 'password') {
+            campoSenha.type = 'text';
+            botaoSenha.textContent = 'Ocultar senha'; 
+        } else {
+            campoSenha.type = 'password';
+            botaoSenha.textContent = 'Mostrar senha'; 
+        }
+    });
+</script>
 
 </body>
 

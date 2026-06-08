@@ -1,14 +1,12 @@
 <?php
 
 include("../infra/db/connect.php");
-if (!isset($_SESSION["usuario"])) {
-    header("Location: ../index.php");
-    exit();
-}
+include("../public/component/verificacao.php");
+
 
 $id = $_GET["id"];
 
-$sql = "DELETE FROM users WHERE id = $id ";
+$sql = "DELETE FROM usuario WHERE id = $id ";
 
 if ($conn->query($sql) === TRUE) {
     header("Location: home.php");

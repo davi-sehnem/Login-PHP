@@ -1,9 +1,7 @@
 <?php
     include("../infra/db/connect.php");
-    if(!isset($_SESSION["usuario"])){
-        header("Location: ../index.php");
-        exit();
-    }
+    include("../public/component/verificacao.php");
+    
     if($_SERVER["REQUEST_METHOD"] == "POST"){
         $usuario = $_POST["usuario"];
         $senha = $_POST["senha"];
